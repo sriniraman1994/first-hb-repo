@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- from props -->
+
+	<!-- <MkYong ConstructorInjection Demo> -->
+<!-- 	<context:properties-placeholder -->
+<!-- 		location="basketball.properties" /> -->
+
+	<bean id="HelperBean" class="com.Getit.Service.HelperClass">
+		<constructor-arg>
+			<ref bean="ConstructorBean" />
+		</constructor-arg>
+	</bean>
+	<!-- <the IOC demo> -->
+	<bean id="ConstructorBean" class="com.Getit.Service.ConstructorDemo">
+	</bean>
+	<bean id="BaseballBean" class="com.Getit.DIandIocDemo.BaseballCoach"
+	init-method="" destroy-method="">
+		<constructor-arg>
+			<ref bean="FortuneBean" />
+		</constructor-arg>
+		
+	</bean>
+	<bean id="FortuneBean" class="com.Getit.DIandIocDemo.FortuneService" />
+	<bean id="BasketballBean" class="com.Getit.DIandIocDemo.BasketBallCoach">
+		<property name="fortune" ref="FortuneBean">
+		</property>
+		<property name="points" value="21">
+		</property>
+		<property name="venue" value="NewYork">
+		</property>
+		<property name="versus" value="KKR">
+		</property>
+		<property name="time" value="5.20">
+		</property>
+		<property name="stadium" value="Newjersey">
+		</property>
+	</bean>
+</beans>
